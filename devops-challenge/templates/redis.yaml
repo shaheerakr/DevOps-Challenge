@@ -1,0 +1,33 @@
+{{- if .Values.redis.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "devops-challenge.fullname" . }}-redis
+spec:
+  selector:
+    matchLabels:
+      app: {{ include "devops-challenge.name" . }}-redis
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ include "devops-challenge.name" . }}-redis
+    spec:
+      containers:
+        - name: redis
+          image: {{ .Values.redis.image }}
+          ports:
+            - containerPort: {{ .Values.redis.port }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "devops-challenge.fullname" . }}-redis
+spec:
+  selector:
+    app: {{ include "devops-challenge.name" . }}-redis
+  ports:
+    - name: redis
+      port: {{ .Values.redis.port }}
+      targetPort: {{ .Values.redis.port }}
+{{- end }}

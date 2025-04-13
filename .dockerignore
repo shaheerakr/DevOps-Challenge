@@ -1,0 +1,36 @@
+# ------------------------------------------------------------
+# .dockerignore
+# ------------------------------------------------------------
+
+# Git-related
+.git
+.gitignore
+
+# Python caches and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+env/
+venv/
+.venv/
+
+# Operating System metadata files
+.DS_Store
+Thumbs.db
+
+# Docker files
+docker-compose.yml
+docker-compose.*.yml
+Dockerfile
+
+# IDE/editor settings
+.idea/
+.vscode/
+
+logs/
+*.log
+
+.env
