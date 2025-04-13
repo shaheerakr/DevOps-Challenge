@@ -1,0 +1,49 @@
+# devops-challenge/values.yaml
+replicaCount: 3
+image:
+  repository: devops-challenge
+  tag: "v1"
+  pullPolicy: Never # Using minikube, image needs to be copied to the minikube VM 
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 8888
+  nodePort: 31000
+
+serviceAccount:
+  create: true
+  name: devops-challenge-sa
+
+
+# Kubernetes resource requests/limits
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+
+env:
+  ENVIRONMENT: "PROD"
+  HOST: "0.0.0.0"
+  PORT: "8888"
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
+
+# Use managed service
+# Deploy independently
+redis:
+  enabled: true
+  image: "redis:6.2-alpine"
+  host: "devops-challenge-redis"
+  port: 6379
+  db: 0
+
+ingress:
+  enabled: false
