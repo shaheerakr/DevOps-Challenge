@@ -30,18 +30,18 @@ spec:
             - name: REDIS_HOST
               valueFrom:
                 secretKeyRef:
-                  name: devops-challenge-env
-                  key: REDIS_HOST
+                  name: redis-config
+                  key: host
             - name: REDIS_PORT
               valueFrom:
                 secretKeyRef:
-                  name: devops-challenge-env
-                  key: REDIS_PORT
+                  name: redis-config
+                  key: port
             - name: REDIS_DB
               valueFrom:
                 secretKeyRef:
-                  name: devops-challenge-env
-                  key: REDIS_DB
+                  name: redis-config
+                  key: db
           readinessProbe:
             httpGet:
               path: /

@@ -65,10 +65,10 @@ Flexibility: Secrets can be updated independently of the application, allowing f
 Example: Creating Secrets
 To create a Kubernetes Secret for sensitive environment variables, use the following command:
 ```
-kubectl create secret generic devops-challenge-env \
-  --from-literal=REDIS_HOST=localhost \
-  --from-literal=REDIS_PORT=6379 \
-  --from-literal=REDIS_DB=0
+kubectl create secret generic redis-config \
+  --from-literal=host="devops-challenge-redis" \
+  --from-literal=port="6379" \
+  --from-literal=db="0"
 ```
 
 ### 4. **Scalability and Performance**
